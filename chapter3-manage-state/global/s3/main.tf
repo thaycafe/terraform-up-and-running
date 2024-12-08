@@ -37,9 +37,9 @@ resource "aws_s3_bucket_public_access_block" "aws_s3_bucket_public_access_block"
 
 
 resource "aws_dynamodb_table" "terraform_locks" {
-  name = "terraform-up-and-running-locks"
+  name         = "terraform-up-and-running-locks"
   billing_mode = "PAY_PER_REQUEST"
-  hash_key = "LockID"
+  hash_key     = "LockID"
 
   attribute {
     name = "LockID"
@@ -50,10 +50,10 @@ resource "aws_dynamodb_table" "terraform_locks" {
 terraform {
   backend "s3" {
     bucket = "terraform-up-and-running-state-thay"
-    key = "global/s3/terraform.tfstate"
+    key    = "global/s3/terraform.tfstate"
     region = "us-east-2"
 
     dynamodb_table = "terraform-up-and-running-locks"
-    encrypt = true
+    encrypt        = true
   }
 }
